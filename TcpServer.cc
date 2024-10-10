@@ -15,8 +15,6 @@ EventLoop* CheckLoopNotNull(EventLoop* loop)
     return loop;
 }
 
-int num = 0;
-
 TcpServer::TcpServer(EventLoop *loop,
           const InetAddress &listenAddr,
           const std::string &nameArg,
