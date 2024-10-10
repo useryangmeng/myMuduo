@@ -6,7 +6,7 @@
 
 #include <strings.h>
 
-EventLoop* CheckLoopNotNull(EventLoop* loop)
+static EventLoop* CheckLoopNotNull(EventLoop* loop)
 {
     if(loop == nullptr)
     {
