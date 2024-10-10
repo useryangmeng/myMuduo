@@ -1,3 +1,0 @@
-/home/mengy/mymuduo/build/CMakeFiles/mymoduo.dir
-/home/mengy/mymuduo/build/CMakeFiles/edit_cache.dir
-/home/mengy/mymuduo/build/CMakeFiles/rebuild_cache.dir

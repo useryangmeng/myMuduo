@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/mengy/mymuduo/build"
+			"value" : "/home/mengy/mymuduo/myMuduo/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -158,8 +158,8 @@
 					"value" : "CXX compiler"
 				}
 			],
-			"type" : "STRING",
-			"value" : "/usr/bin/g++"
+			"type" : "FILEPATH",
+			"value" : "/usr/bin/c++"
 		},
 		{
 			"name" : "CMAKE_CXX_COMPILER_AR",
@@ -286,8 +286,8 @@
 					"value" : "C compiler"
 				}
 			],
-			"type" : "STRING",
-			"value" : "/usr/bin/gcc"
+			"type" : "FILEPATH",
+			"value" : "/usr/bin/cc"
 		},
 		{
 			"name" : "CMAKE_C_COMPILER_AR",
@@ -547,7 +547,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/mengy/mymuduo/build/CMakeFiles/pkgRedirects"
+			"value" : "/home/mengy/mymuduo/myMuduo/build/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -607,7 +607,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/mengy/mymuduo"
+			"value" : "/home/mengy/mymuduo/myMuduo"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1155,7 +1155,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/mengy/mymuduo/build"
+			"value" : "/home/mengy/mymuduo/myMuduo/build"
 		},
 		{
 			"name" : "myduduo_IS_TOP_LEVEL",
@@ -1179,7 +1179,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/mengy/mymuduo"
+			"value" : "/home/mengy/mymuduo/myMuduo"
 		}
 	],
 	"kind" : "cache",

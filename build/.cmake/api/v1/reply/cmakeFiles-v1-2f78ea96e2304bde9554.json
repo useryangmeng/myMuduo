@@ -743,8 +743,8 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "/home/mengy/mymuduo/build",
-		"source" : "/home/mengy/mymuduo"
+		"build" : "/home/mengy/mymuduo/myMuduo/build",
+		"source" : "/home/mengy/mymuduo/myMuduo"
 	},
 	"version" : 
 	{
