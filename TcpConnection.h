@@ -48,8 +48,6 @@ public:
     void connectEstablished();
     //连接销毁
     void connectDestroyed();
-
-
 private:
     enum StateE { kDisconnected,kConnecting,kConnected,kDisconnecting };
     void handleRead(Timestamp receveTime);
