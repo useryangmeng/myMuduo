@@ -33,8 +33,10 @@ public:
 
     //发送数据
     void send(const void* message,int len);
+    void send(const std::string& buf);
     //关闭连接
     void shutdown(); 
+
 
     void setConnectionCallback(const ConnectionCallback& cb) { connectionCallback_ = cb; }
     void setMessageCallback(const MessageCallback& cb) { messageCallback_ = cb; }
@@ -47,12 +49,15 @@ public:
     //连接销毁
     void connectDestroyed();
 
+
 private:
     enum StateE { kDisconnected,kConnecting,kConnected,kDisconnecting };
     void handleRead(Timestamp receveTime);
     void hanleWrite();
     void handleClose();
     void handleError();
+
+    void setState(StateE state) { state_ = state; }
 
     void sendInLoop(const void* message,size_t len); 
     void shutdownInLoop();
@@ -71,6 +76,7 @@ private:
 
     ConnectionCallback connectionCallback_;//业务回调
     MessageCallback messageCallback_;
+
     WriteCompleteCallback writeCompleteCallback_;
 
     HighWaterMarkCallback highWaterMarkCallback_;//水位标志、回调
