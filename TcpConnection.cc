@@ -193,7 +193,7 @@ void TcpConnection::hanleWrite()
             outputBuffer_.retrieve(n);
             if(outputBuffer_.readableBytes() == 0)
             {
-                channel_->disableReading();
+                channel_->disableWriting();
                 if(writeCompleteCallback_)
                 {
                     loop_->queueInLoop(std::bind(writeCompleteCallback_,shared_from_this()));
@@ -222,8 +222,8 @@ void TcpConnection::handleClose()
     channel_->disableAll();
 
     TcpConnectionPtr connPtr(shared_from_this());
-    connectionCallback_(connPtr);
-    closeCallback_(connPtr);
+    connectionCallback_(connPtr);//用户传递的关闭连接回调
+    closeCallback_(connPtr);//TcpServer的关闭连接回调
 }
 
 void TcpConnection::handleError()
