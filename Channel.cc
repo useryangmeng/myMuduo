@@ -17,7 +17,7 @@ Channel::~Channel()
 {
 }
 
-// 防止当channel被手动remove掉，channel还在执行回调操作
+// 防止当channel被手动remove掉，channel还在执行回调操作,当一个TcpConnection创建的时候调用
 void Channel::tie(const std::shared_ptr<void> &obj)
 {
     tie_ = obj;

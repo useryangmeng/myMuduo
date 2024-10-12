@@ -32,24 +32,20 @@ public:
     bool connected() const {return state_ == kConnected;}
 
     //发送数据
-    void send(const void* message,int len);
     void send(const std::string& buf);
     //关闭连接
     void shutdown(); 
 
-
     void setConnectionCallback(const ConnectionCallback& cb) { connectionCallback_ = cb; }
     void setMessageCallback(const MessageCallback& cb) { messageCallback_ = cb; }
     void setWriteCompleteCallback(const WriteCompleteCallback& cb) { writeCompleteCallback_ = cb; }
-    void setHighWaterMarkCallback(const HighWaterMarkCallback& cb) { highWaterMarkCallback_ = cb; }
+    void setHighWaterMarkCallback(const HighWaterMarkCallback& cb,size_t highWaterMark) { highWaterMarkCallback_ = cb; highWaterMark_ = highWaterMark; }
     void setCloseCallback(const CloseCallback& cb) { closeCallback_ = cb; }
 
     //连接建立
     void connectEstablished();
     //连接销毁
     void connectDestroyed();
-
-
 private:
     enum StateE { kDisconnected,kConnecting,kConnected,kDisconnecting };
     void handleRead(Timestamp receveTime);

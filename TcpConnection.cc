@@ -120,6 +120,47 @@ void TcpConnection::sendInLoop(const void* data,size_t len)
     }
 }
 
+//关闭连接
+void TcpConnection::shutdown()
+{
+    if(state_ == kConnected)
+    {
+        setState(kDisconnecting);
+        loop_->runInLoop(std::bind(&TcpConnection::shutdownInLoop,this));
+    }
+}
+
+void TcpConnection::shutdownInLoop()
+{
+    if(!channel_->isWriting())//说明发送缓冲区的数据全部发送完毕,与hanleWrite的函数对应
+    {
+        socket_->shutdownWrite();//关闭写端，触发EPOLLHUP，与channel::handleEventWithGurd条件对应
+    }
+}
+
+//建立连接
+void TcpConnection::connectEstablished()
+{
+    setState(kConnected);
+    channel_->tie(shared_from_this());
+    channel_->enableReading();//向epoll注册epollin事件
+
+    //新连接建立，执行回调
+    connectionCallback_(shared_from_this());
+}
+
+//连接销毁
+void TcpConnection::connectDestroyed()
+{
+    if(state_ == kConnected)
+    {
+        setState(kDisconnected);
+        channel_->disableAll();//把channel所有感兴趣的事件从poller中del掉
+        connectionCallback_(shared_from_this());
+    }
+    channel_->remove();//从poller中删除channel
+}
+
 void TcpConnection::handleRead(Timestamp receveTime)
 {
     int saveErrno = 0;
@@ -152,7 +193,7 @@ void TcpConnection::hanleWrite()
             outputBuffer_.retrieve(n);
             if(outputBuffer_.readableBytes() == 0)
             {
-                channel_->disableReading();
+                channel_->disableWriting();
                 if(writeCompleteCallback_)
                 {
                     loop_->queueInLoop(std::bind(writeCompleteCallback_,shared_from_this()));
@@ -181,8 +222,8 @@ void TcpConnection::handleClose()
     channel_->disableAll();
 
     TcpConnectionPtr connPtr(shared_from_this());
-    connectionCallback_(connPtr);
-    closeCallback_(connPtr);
+    connectionCallback_(connPtr);//用户传递的关闭连接回调
+    closeCallback_(connPtr);//TcpServer的关闭连接回调
 }
 
 void TcpConnection::handleError()
