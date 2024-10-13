@@ -28,6 +28,7 @@ TcpServer::TcpServer(EventLoop *loop,
     , connectionCallback_(nullptr)
     , messageCallback_(nullptr)
     , nextConnId_(1)
+    , started_(0)
 {
     acceptor_->setConnectionCallback(std::bind(&TcpServer::newConnection,this,std::placeholders::_1,std::placeholders::_2));
 }
@@ -51,6 +52,7 @@ void TcpServer::start()
 {
     if(started_++ == 0)
     {
+        LOG_INFO("TcpServer::start has started! \n");
         threadPool_->start(threadInitCallback_);
         loop_->runInLoop(std::bind(&Acceptor::listen,acceptor_.get()));
     }

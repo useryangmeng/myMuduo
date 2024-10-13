@@ -32,7 +32,7 @@ Timestamp EPollPoller::poll(int timeoutMs, ChannelList *activeChannel)
     //实际上poll的高并发，应该使用debug日志
     LOG_INFO("func = %s => fd total count:%lu\n",__FUNCTION__,channels_.size());
 
-    int numEvents = epoll_wait(epollfd_,&*events_.begin(),static_cast<int>(events_.size()),timeoutMs);
+    int numEvents = epoll_wait(epollfd_,&(*events_.begin()),static_cast<int>(events_.size()),timeoutMs);
     int saveErrno = errno;
     Timestamp now(Timestamp::now()); 
 
@@ -133,8 +133,10 @@ void EPollPoller::update(int operation, Channel *channel)
     struct epoll_event event;
     memset(&event, 0, sizeof(event));
     event.events = channel->events();
+    LOG_INFO("EPollPoller::update:Channel = %p",channel);
     event.data.ptr = channel;
-    event.data.fd = channel->fd();
+    LOG_INFO("EPollPoller::update:event.data.ptr = %p",event.data.ptr);
+    //event.data.fd = channel->fd();
     int fd = channel->fd();
 
     if (::epoll_ctl(epollfd_, operation, fd, &event) < 0)

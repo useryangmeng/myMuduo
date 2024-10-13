@@ -17,7 +17,7 @@ public:
         , writeIndex_(kCheapPrepend)
     {
     }
-    ~Buffer();
+    ~Buffer() = default;
 
     size_t readableBytes() { return writeIndex_ - readerIndex_; }
     size_t writeableBytes() { return buffer_.size() - writeIndex_; }

@@ -72,5 +72,5 @@ public:
 
 private:
     int logLevel_;
-    Logger();
+    Logger() = default;
 };

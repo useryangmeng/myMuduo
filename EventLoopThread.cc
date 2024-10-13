@@ -1,4 +1,5 @@
 #include "EventLoopThread.h"
+#include "Logger.h"
 
 EventLoopThread::EventLoopThread(const ThreadInitCallbck &cb, const std::string &name)
     : loop_(nullptr)
@@ -40,6 +41,8 @@ EventLoop *EventLoopThread::startLoop()
 void EventLoopThread::threadFunc()
 {
     EventLoop loop; // 创建一个独立的EventLoop,和上面的线程是一一对应的，one loop peer thread
+
+    LOG_INFO("EventLoopThread::threadFunc() new thread created! \n");
 
     if (callback_)
     {
