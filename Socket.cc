@@ -35,9 +35,9 @@ int Socket::accept(InetAddress* peerAddr)
     int ret = 0;
     struct sockaddr_in caddr;
     memset(&caddr,0,sizeof(caddr));
-    socklen_t len = 0;
+    socklen_t len = sizeof(caddr);
 
-    ret = ::accept(sockfd_,(struct sockaddr*)&caddr,&len);
+    ret = ::accept4(sockfd_,(struct sockaddr*)&caddr,&len,SOCK_NONBLOCK | SOCK_CLOEXEC);
     // if(ret == -1)
     // {
     //     LOG_FATAL("Accept socket:%d fail ! \n",sockfd_);

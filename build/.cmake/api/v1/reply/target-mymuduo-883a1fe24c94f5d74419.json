@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "/home/mengy/mymuduo/myMuduo/lib/libmymoduo.so"
+			"path" : "/home/mengy/mymuduo/myMuduo/lib/libmymuduo.so"
 		}
 	],
 	"backtrace" : 1,
@@ -41,7 +41,7 @@
 			"defines" : 
 			[
 				{
-					"define" : "mymoduo_EXPORTS"
+					"define" : "mymuduo_EXPORTS"
 				}
 			],
 			"language" : "CXX",
@@ -67,7 +67,7 @@
 			]
 		}
 	],
-	"id" : "mymoduo::@6890427a1f51a3e7e1df",
+	"id" : "mymuduo::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -79,8 +79,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "mymoduo",
-	"nameOnDisk" : "libmymoduo.so",
+	"name" : "mymuduo",
+	"nameOnDisk" : "libmymuduo.so",
 	"paths" : 
 	{
 		"build" : ".",

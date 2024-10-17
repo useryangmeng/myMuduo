@@ -1,5 +1,6 @@
 #include "EventLoopThreadPool.h"
 #include "EventLoopThread.h"
+#include "Logger.h"
 
 #include <memory>
 
@@ -20,6 +21,7 @@ EventLoopThreadPool::~EventLoopThreadPool()
 
 void EventLoopThreadPool::start(const ThreadInitCallbck& cb)
 {
+    LOG_INFO("EventLoopThreadPool::start has started!\n");
     started_ = true;
 
     for(int i = 0;i < numThreads_;i++)

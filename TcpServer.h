@@ -7,6 +7,8 @@
 #include "Timestamp.h"
 #include "EventLoopThreadPool.h"
 #include "Callbacks.h"
+#include "TcpConnection.h"
+#include "Buffer.h"
 
 #include <functional>
 #include <string>
@@ -16,7 +18,6 @@
 
 class Buffer;
 class TcpConnection;
-
 
 class TcpServer : noncopyable
 {

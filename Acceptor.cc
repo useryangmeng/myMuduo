@@ -37,6 +37,7 @@ Acceptor::~Acceptor()
 
 void Acceptor::listen()
 {
+    LOG_INFO("Acceptor::listen() main thread is running \n");
     listenning_ = true;
     acceptSocket_.listen();//listen
 
