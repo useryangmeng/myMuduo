@@ -44,19 +44,20 @@ Timestamp EPollPoller::poll(int timeoutMs, ChannelList *activeChannel)
         {
             events_.resize(events_.size() * 2);
         }
-        else if(numEvents == 0)
+    }
+    else if(numEvents == 0)
+    {
+        LOG_DEBUG("%s timeout\n",__FUNCTION__);
+    }
+    else
+    {
+        if(saveErrno != EINTR)
         {
-            LOG_DEBUG("%s timeout\n",__FUNCTION__);
-        }
-        else
-        {
-            if(saveErrno != EINTR)
-            {
-                errno = saveErrno;
-                LOG_ERROR("EPollPoller::poll() err! \n");
-            }
+            errno = saveErrno;
+            LOG_ERROR("EPollPoller::poll() err! \n");
         }
     }
+    
     return now;
 }
 
